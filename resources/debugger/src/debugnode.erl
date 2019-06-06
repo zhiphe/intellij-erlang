@@ -3,7 +3,8 @@
 -export([main/1]).
 
 main([PortText]) ->
-  {ok, Host} = inet:gethostname(),
+  % {ok, Host} = inet:gethostname(),
+  Host = {127, 0, 0, 1}, % use localhost for local node debugger
   try erlang:list_to_integer(PortText) of
     Port -> connect_and_run(Host, Port)
   catch

@@ -250,8 +250,9 @@ public class RebarProjectImportBuilder extends ProjectImportBuilder<ImportedOtpA
         // Initialize output paths according to Rebar conventions.
         CompilerModuleExtension compilerModuleExt = rootModel.getModuleExtension(CompilerModuleExtension.class);
         compilerModuleExt.inheritCompilerOutputPath(false);
-        compilerModuleExt.setCompilerOutputPath(ideaModuleDir + File.separator + "ebin");
-        compilerModuleExt.setCompilerOutputPathForTests(ideaModuleDir + File.separator + ".eunit");
+        String defaultRebar3Output = ideaModuleDir + File.separator + "_build" + File.separator + "default" + File.separator + "lib" + File.separator;
+        compilerModuleExt.setCompilerOutputPath(defaultRebar3Output + module.getName() + File.separator + "ebin");
+        compilerModuleExt.setCompilerOutputPathForTests(defaultRebar3Output + module.getName() + File.separator + ".eunit");
         createdRootModels.add(rootModel);
         // Set inter-module dependencies
         resolveModuleDeps(rootModel, importedOtpApp, projectSdk, selectedAppNames);
